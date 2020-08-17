@@ -18,11 +18,8 @@ public class TestJpa {
 		factory = Persistence.createEntityManagerFactory("pu_essai");
 	}
 
-	@Test
-	public void test() {
-
-	}
-
+	// un find simple permettant d’extraire un livre en fonction de son identifiant
+	// et affichez son titre et son auteur.
 	@Test
 	public void testFind() {
 
@@ -34,6 +31,7 @@ public class TestJpa {
 		factory.close();
 	}
 
+	// Affichez la liste de tous les livres
 	@Test
 	public void ListeLivres() {
 
@@ -66,9 +64,9 @@ public class TestJpa {
 		factory.close();
 
 	}
-
+	// Insérez un nouveau Livre de votre choix en base de données
 	@Test
-	public void InsertLivere() {
+	public void InsertLivre() {
 
 		EntityManager em = factory.createEntityManager();
 		Livre l = new Livre();
@@ -97,13 +95,14 @@ public class TestJpa {
 		Livre l = em.find(Livre.class, 6);
 		l.setTitre("Cronicas de una muerte anunciada");
 		em.merge(l);
-		
+
 		em.getTransaction().commit();
 		// ferme la transaction
 		em.close();
 		factory.close();
 	}
-	
+
+	//Supprimez un livre 
 	@Test
 	public void deleteLivre() {
 
@@ -113,15 +112,16 @@ public class TestJpa {
 		em.getTransaction().begin();
 		// ajoute dans la BDD
 		Livre l = em.find(Livre.class, 6);
-		
+
 		em.remove(l);
-		
+
 		em.getTransaction().commit();
 		// ferme la transaction
 		em.close();
 		factory.close();
 	}
-	
+
+	//Modifiez le titre du livre d’identifiant 5
 	@Test
 	public void updateLivre5() {
 
@@ -134,7 +134,9 @@ public class TestJpa {
 		em.close();
 		factory.close();
 	}
-	
+
+	//extraire de la base un livre en fonction de son titre.
+
 	@Test
 	public void ListeLivreTitre() {
 
@@ -151,7 +153,7 @@ public class TestJpa {
 		factory.close();
 
 	}
-	
+// extraire de la base un livre en fonction de son auteur
 	@Test
 	public void ListeLivreAuteur() {
 
