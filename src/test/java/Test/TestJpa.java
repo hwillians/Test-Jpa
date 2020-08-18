@@ -26,6 +26,7 @@ public class TestJpa {
 		EntityManager em = factory.createEntityManager();
 		if (em != null) {
 			Livre l = em.find(Livre.class, 1);
+			System.out.println(l);
 		}
 		em.close();
 		factory.close();
